@@ -8,7 +8,10 @@ class PagesController extends Controller
 {
     //
     public function index(){
-        return view('pages.index');
+        $title = 'Welcome to Laravel';
+        #formas de pasar datos a la vista/blade
+        # return view('pages.index', compact('title'));
+        return view('pages.index')->with('title', $title);
     }
 
     public function about(){
@@ -17,6 +20,12 @@ class PagesController extends Controller
     }
 
     public function services(){
-        return view('pages.services');
+        $data = [
+            'title' => 'Services',
+            'services' => [
+                'Web design', 'Programming', 'Seo'
+            ]
+        ];
+        return view('pages.services')->with($data);
     }
 }

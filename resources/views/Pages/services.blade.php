@@ -1,19 +1,15 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Services</title>
+@extends('layouts.app')
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+@section('content')
+    <h1>{{$title}}</h1>
 
-        <!-- Styles -->
-       
-    </head>
-    <body>
-        <h1>Services</h1>
-    </body>
-</html>
+    @if(!empty($services))
+        @foreach($services as $service)
+            <ul class="list-group">
+                <li class="list-group-item">{{$service}}</li>
+            </ul>
+        @endforeach
+    @endif
+
+@endsection

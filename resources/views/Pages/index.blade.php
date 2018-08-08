@@ -1,19 +1,18 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>{{config('app.name', 'lsapp')}}</title>
+@section('content')
+    <div class="jumbotron text-center">
+        <h1 class="display-4">{{$title}}</h1>
+      
+        <hr class="my-4">
+        <p>This is a laravel application from the "laravel from scratch" youtube series</p>
+        
+        <a href="#" class="btn btn-primary btn-lg" role="button">Login</a>
+        <a href="#" class="btn btn-success btn-lg" role="button">Register</a>
+        
+    </div>
+      
+  
+    
+@endsection
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-        <!-- Styles -->
-       
-    </head>
-    <body>
-        <h1>INDEX</h1>
-    </body>
-</html>
