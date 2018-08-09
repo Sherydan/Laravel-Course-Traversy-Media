@@ -11,8 +11,5 @@
         <a href="#" class="btn btn-success btn-lg" role="button">Register</a>
         
     </div>
-      
-  
-    
 @endsection
 
