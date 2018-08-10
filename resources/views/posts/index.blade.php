@@ -6,8 +6,8 @@
             <div class="card mb-2">
                 <div class="card-body">
                     <h1 class="card-title"> <a href="/posts/{{$post->id}}">{{$post->title}}</a></h1>
-                    <p class="card-text">{{$post->body}}</p>
-                    <small>{{$post->created_at}}</small>
+                    <p class="card-text">{!!$post->body!!}</p>
+                    <small>Created at: {{$post->created_at}}</small>
                 </div>
             </div>
         @endforeach
