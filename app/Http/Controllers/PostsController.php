@@ -8,6 +8,18 @@ use DB;
 
 class PostsController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {   
+        # implementar middleware a todas las vistas, excepto index y show
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -84,7 +96,12 @@ class PostsController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
-        return view('posts.edit')->with('post', $post);
+
+        if (auth()->user()->id !== $post->user_id) {
+            return redirect('/posts')->with('error', 'Unauthorized Page');
+        } else {
+            return view('posts.edit')->with('post', $post);
+        }
     }
 
     /**
@@ -123,11 +140,18 @@ class PostsController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
-        if ($post->delete()) {
-            return redirect('/posts')->with('success', 'Post Deleted');
+
+        if (auth()->user()->id !== $post->user_id) {
+            return redirect('/posts')->with('error', 'Unauthorized Page');
         } else {
-            return view('posts')->with('error', 'There was an error deleting your post');
+            if ($post->delete()) {
+                return redirect('/posts')->with('success', 'Post Deleted');
+            } else {
+                return view('/posts')->with('error', 'There was an error deleting your post');
+            }
         }
+
+        
 
 
 

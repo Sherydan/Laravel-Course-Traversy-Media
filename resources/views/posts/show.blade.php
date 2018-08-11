@@ -10,14 +10,19 @@
                 <small>Created at: {{$post->created_at}} by: {{$post->user->name}}</small>
 
                 <a href="/posts" class="btn btn-primary btn-block mt-2 mb-2">Go Back</a>
-                <a href="/posts/{{$post->id}}/edit" class="btn btn-primary float-left">Edit</a>
+                @if (!Auth::guest())
+                    @if(Auth::user()->id == $post->user_id)
+                    <a href="/posts/{{$post->id}}/edit" class="btn btn-primary float-left">Edit</a>
 
-                {!! Form::open(['action' => ['PostsController@destroy', $post->id], 'method' => 'POST', 'class' => 'float-right']) !!}
+                    {!! Form::open(['action' => ['PostsController@destroy', $post->id], 'method' => 'POST', 'class' => 'float-right']) !!}
 
-                    {!!Form::hidden('_method', 'DELETE')!!}
-                    {!!Form::submit('Delete', ['class'=> 'btn btn-danger'])!!}
+                        {!!Form::hidden('_method', 'DELETE')!!}
+                        {!!Form::submit('Delete', ['class'=> 'btn btn-danger'])!!}
 
-                {!! Form::close() !!}
+                    {!! Form::close() !!}
+                    @endif
+                @endif
+                
             </div>
             
         </div>
