@@ -22,7 +22,7 @@ class PostsController extends Controller
         # $posts = Post::orderBy('created_at', 'desc')->take(1)->get();
         # $posts = Post::All();
 
-        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
+        $posts = Post::orderBy('created_at', 'desc')->paginate(5);
         return view('posts.index')->with('posts', $posts);
     }
 
